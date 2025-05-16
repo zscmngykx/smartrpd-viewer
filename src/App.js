@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/login';
+import CaseList from './pages/CaseList'; // 你可以先创建一个简单页面
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+
+      {/* 受保护的路由 */}
+      <Route
+        path="/cases"
+        element={
+          <ProtectedRoute>
+            <CaseList />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
 
